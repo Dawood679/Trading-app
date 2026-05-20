@@ -1,11 +1,11 @@
 version: '3.8'
+
 services:
   trading-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: dawoodalam057/trading-app:latest
     ports:
       - "3000:3000"
     env_file:
       - .env
+    restart: always
     command: npm start
