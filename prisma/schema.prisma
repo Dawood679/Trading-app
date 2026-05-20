@@ -1,0 +1,199 @@
+generator client {
+  provider = "prisma-client-js"
+   binaryTargets = ["native", "debian-openssl-3.0.x", "debian-openssl-1.1.x"]
+  // binaryTargets = [
+  //   "native",
+  //   "debian-openssl-1.1.x",
+  //   "debian-openssl-3.0.x"
+  // ]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Plan {
+  FREE
+  PRO
+  PREMIUM
+}
+
+enum SignalType {
+  STRONG_BUY
+  BUY
+  NEUTRAL
+  SELL
+  STRONG_SELL
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+  PAST_DUE
+  INACTIVE
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model User {
+  id               String    @id @default(cuid())
+  name             String?
+  email            String?   @unique
+  emailVerified    DateTime?
+  image            String?
+  plan             Plan      @default(FREE)
+  stripeCustomerId String?   @unique
+  stripeSubId      String?   @unique
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+  subscription  Subscription?
+  watchlist     Watchlist[]
+  tradeHistory  TradeHistory[]
+  learnProgress LearnProgress[]
+  aiChats       AiChat[]
+}
+
+model Subscription {
+  id                   String             @id @default(cuid())
+  userId               String             @unique
+  stripeCustomerId     String?            @unique
+  stripeSubscriptionId String?            @unique
+  plan                 Plan               @default(FREE)
+  status               SubscriptionStatus @default(ACTIVE)
+  validUntil           DateTime?
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Watchlist {
+  id        String   @id @default(cuid())
+  userId    String
+  symbol    String
+  name      String
+  addedAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, symbol])
+}
+
+model Signal {
+  id         String     @id @default(cuid())
+  symbol     String
+  signalType SignalType
+  strategy   String
+  confidence Float
+  reason     String
+  hints      String[]
+  price      Float      @default(0)
+  rsi        Float      @default(50)
+  macd       Float      @default(0)
+  createdAt  DateTime   @default(now())
+
+  @@index([symbol, createdAt])
+}
+
+model TradeHistory {
+  id        String   @id @default(cuid())
+  userId    String
+  symbol    String
+  action    String
+  price     Float
+  quantity  Float
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model LearnModule {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  difficulty  String
+  duration    Int
+  content     String   @db.Text
+  order       Int      @unique
+  isPremium   Boolean  @default(false)
+  requiredPlan Plan    @default(FREE)
+  quiz        Json
+  createdAt   DateTime @default(now())
+
+  progress LearnProgress[]
+}
+
+model LearnProgress {
+  id        String   @id @default(cuid())
+  userId    String
+  moduleId  String
+  completed Boolean  @default(false)
+  score     Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  module LearnModule @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, moduleId])
+}
+
+model AiChat {
+  id        String   @id @default(cuid())
+  userId    String
+  messages  Json
+  symbol    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model EmailOtp {
+  id        String   @id @default(cuid())
+  email     String
+  otp       String
+  expires   DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([email])
+}
