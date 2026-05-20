@@ -127,7 +127,7 @@ export default function LandingPage() {
                 <TrendingUp className="w-4.5 h-4.5 text-white" />
                 <div className="absolute inset-0 rounded-xl bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
-              <span className="font-bold text-lg tracking-tight">Trading</span>
+              <span className="font-bold text-lg tracking-tight">DawoodPro</span>
             </Link>
 
             <div className="hidden md:flex items-center gap-8">
