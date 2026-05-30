@@ -31,7 +31,7 @@ export function Navbar({ onMenuClick }: NavbarProps) {
           <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#3b82f6] to-[#00d395] flex items-center justify-center">
             <TrendingUp className="w-3.5 h-3.5 text-white" />
           </div>
-          <span className="font-bold text-white">TradingPro</span>
+          <span className="font-bold text-white">TradeOnix</span>
         </Link>
       </div>
 

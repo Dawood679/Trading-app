@@ -12,9 +12,9 @@ const transporter = nodemailer.createTransport({
 
 export async function sendOtpEmail(email: string, otp: string) {
   await transporter.sendMail({
-    from: `"TradingPro" <${process.env.SMTP_USER}>`,
+    from: `"TradeOnix" <${process.env.SMTP_USER}>`,
     to: email,
-    subject: `Your TradingPro login code: ${otp}`,
+    subject: `Your TradeOnix login code: ${otp}`,
     html: `
       <div style="font-family:sans-serif;background:#0f1117;color:#fff;padding:40px 0;min-height:100vh">
         <div style="max-width:480px;margin:0 auto;background:#1a1f2e;border:1px solid #1f2937;border-radius:16px;padding:40px">
@@ -22,12 +22,12 @@ export async function sendOtpEmail(email: string, otp: string) {
             <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#3b82f6,#00d395);display:flex;align-items:center;justify-content:center">
               <span style="color:#fff;font-weight:bold;font-size:18px">T</span>
             </div>
-            <span style="font-size:20px;font-weight:bold;color:#fff">TradingPro</span>
+            <span style="font-size:20px;font-weight:bold;color:#fff">TradeOnix</span>
           </div>
 
           <h2 style="margin:0 0 8px;color:#fff;font-size:22px">Your login code</h2>
           <p style="color:#6b7280;margin:0 0 32px;font-size:14px">
-            Use this code to sign in to your TradingPro account. It expires in 10 minutes.
+            Use this code to sign in to your TradeOnix account. It expires in 10 minutes.
           </p>
 
           <div style="background:#0f1117;border:1px solid #374151;border-radius:12px;padding:24px;text-align:center;margin-bottom:32px">
@@ -41,11 +41,11 @@ export async function sendOtpEmail(email: string, otp: string) {
 
           <hr style="border:none;border-top:1px solid #1f2937;margin:32px 0"/>
           <p style="color:#374151;font-size:12px;margin:0">
-            ⚠️ Trading involves risk. TradingPro provides analysis tools, not financial advice.
+            ⚠️ Trading involves risk. TradeOnix provides analysis tools, not financial advice.
           </p>
         </div>
       </div>
     `,
-    text: `Your TradingPro login code is: ${otp}\n\nThis code expires in 10 minutes and can only be used once.`,
+    text: `Your TradeOnix login code is: ${otp}\n\nThis code expires in 10 minutes and can only be used once.`,
   })
 }

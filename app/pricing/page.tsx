@@ -85,7 +85,7 @@ function PricingContent() {
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#3b82f6] to-[#00d395] flex items-center justify-center">
             <TrendingUp className="w-4 h-4 text-white" />
           </div>
-          <span className="font-bold">TradingPro</span>
+          <span className="font-bold">TradeOnix</span>
         </Link>
         {session && (
           <Link href="/dashboard" className="ml-auto text-sm text-[#3b82f6] hover:underline">
@@ -196,7 +196,7 @@ function PricingContent() {
             All plans include a 30-day money-back guarantee. Cancel anytime.
           </p>
           <p className="text-xs text-gray-600 mt-2">
-            ⚠️ Trading involves risk. TradingPro provides analysis tools, not financial advice.
+            ⚠️ Trading involves risk. TradeOnix provides analysis tools, not financial advice.
           </p>
         </div>
       </div>

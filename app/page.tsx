@@ -96,7 +96,7 @@ const plans = [
 ]
 
 const testimonials = [
-  { name: 'Alex R.', role: 'Forex Trader', text: 'The signal confidence scores are spot-on. My win rate improved significantly after switching to TradingPro.', stars: 5 },
+  { name: 'Alex R.', role: 'Forex Trader', text: 'The signal confidence scores are spot-on. My win rate improved significantly after switching to TradeOnix.', stars: 5 },
   { name: 'Sarah K.', role: 'Crypto Investor', text: 'The AI Advisor feels like having a personal analyst available 24/7. Absolutely worth the Pro plan.', stars: 5 },
   { name: 'Mike T.', role: 'Day Trader', text: 'Backtesting on 6 months of BTC data gave me the confidence to run my strategy live. Game changer.', stars: 5 },
 ]
@@ -127,7 +127,7 @@ export default function LandingPage() {
                 <TrendingUp className="w-4.5 h-4.5 text-white" />
                 <div className="absolute inset-0 rounded-xl bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
-              <span className="font-bold text-lg tracking-tight">TradingPro</span>
+              <span className="font-bold text-lg tracking-tight">TradeOnix</span>
             </Link>
 
             <div className="hidden md:flex items-center gap-8">
@@ -400,7 +400,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto">
           <div className="reveal text-center mb-12">
             <span className="inline-block text-xs font-semibold text-[#8b5cf6] tracking-widest uppercase mb-4">Testimonials</span>
-            <h2 className="text-3xl font-bold">Traders love TradingPro</h2>
+            <h2 className="text-3xl font-bold">Traders love TradeOnix</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {testimonials.map((t, i) => (
@@ -512,7 +512,7 @@ export default function LandingPage() {
               <span className="gradient-animated">with an edge?</span>
             </h2>
             <p className="text-gray-400 text-lg mb-10">
-              Join traders using TradingPro for professional signals and AI-powered market analysis.
+              Join traders using TradeOnix for professional signals and AI-powered market analysis.
             </p>
             <Link href="/login">
               <Button size="xl" className="group gap-3 text-base px-10 bg-gradient-to-r from-[#00d395] to-[#3b82f6] hover:opacity-95 text-white border-0 shadow-2xl shadow-[#00d395]/25 hover:shadow-[#00d395]/40 transition-all">
@@ -532,7 +532,7 @@ export default function LandingPage() {
               <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#3b82f6] to-[#00d395] flex items-center justify-center shadow-lg shadow-[#3b82f6]/20">
                 <TrendingUp className="w-3.5 h-3.5 text-white" />
               </div>
-              <span className="font-bold text-sm">TradingPro</span>
+              <span className="font-bold text-sm">TradeOnix</span>
             </div>
             <div className="flex items-center gap-6 text-xs text-gray-500">
               <Link href="/login" className="hover:text-white transition-colors">Dashboard</Link>
@@ -541,7 +541,7 @@ export default function LandingPage() {
             </div>
             <p className="text-xs text-gray-600 text-center">
               ⚠️ Trading involves risk. Past performance is not indicative of future results.<br />
-              <span className="text-gray-700">© 2025 TradingPro · All rights reserved</span>
+              <span className="text-gray-700">© 2025 TradeOnix · All rights reserved</span>
             </p>
           </div>
         </div>

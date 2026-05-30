@@ -17,7 +17,7 @@ const GEMINI_ATTEMPTS = [
 ]
 
 function buildSystemPrompt(watchlistSymbols: string, symbol: string | null, plan: string) {
-  return `You are TradingPro's AI Trading Advisor — a professional technical analyst and trading mentor.
+  return `You are TradeOnix's AI Trading Advisor — a professional technical analyst and trading mentor.
 
 Current context:
 - User's watchlist: ${watchlistSymbols}

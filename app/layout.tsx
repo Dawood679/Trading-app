@@ -10,15 +10,15 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'TradingPro — Professional Trading Signals',
-    template: '%s | TradingPro',
+    default: 'TradeOnix — Professional Trading Signals',
+    template: '%s | TradeOnix',
   },
   description:
     'AI-powered trading signals, real-time market analysis, and professional trading tools for EUR/USD, GBP/USD, BTC/USD, and more.',
   keywords: ['trading', 'signals', 'forex', 'crypto', 'technical analysis', 'RSI', 'MACD'],
-  authors: [{ name: 'TradingPro' }],
+  authors: [{ name: 'TradeOnix' }],
   openGraph: {
-    title: 'TradingPro — Professional Trading Signals',
+    title: 'TradeOnix — Professional Trading Signals',
     description: 'AI-powered trading signals and market analysis',
     type: 'website',
   },
