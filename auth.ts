@@ -1,6 +1,5 @@
 import NextAuth from 'next-auth'
 import Google from 'next-auth/providers/google'
-import Credentials from 'next-auth/providers/credentials'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { prisma } from '@/lib/prisma'
 import type { Plan } from '@prisma/client'
@@ -29,57 +28,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
-    Credentials({
-      id: 'email-otp',
-      name: 'Email OTP',
-      credentials: {
-        email: { label: 'Email', type: 'email' },
-        otp: { label: 'OTP', type: 'text' },
-      },
-      async authorize(credentials) {
-        const email = credentials?.email as string | undefined
-        const otp = credentials?.otp as string | undefined
-
-        if (!email || !otp) return null
-
-        const record = await prisma.emailOtp.findFirst({
-          where: {
-            email,
-            otp,
-            used: false,
-            expires: { gt: new Date() },
-          },
-          orderBy: { createdAt: 'desc' },
-        })
-
-        if (!record) return null
-
-        await prisma.emailOtp.update({
-          where: { id: record.id },
-          data: { used: true },
-        })
-
-        let user = await prisma.user.findUnique({ where: { email } })
-        if (!user) {
-          user = await prisma.user.create({
-            data: { email, emailVerified: new Date() },
-          })
-        } else if (!user.emailVerified) {
-          await prisma.user.update({
-            where: { id: user.id },
-            data: { emailVerified: new Date() },
-          })
-        }
-
-        return {
-          id: user.id,
-          email: user.email!,
-          name: user.name,
-          image: user.image,
-          plan: user.plan,
-        }
-      },
+      allowDangerousEmailAccountLinking: true,
     }),
   ],
   callbacks: {
