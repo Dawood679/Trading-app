@@ -25,7 +25,7 @@ RUN npm run build
 # build stage to run the app
 FROM node:20-bookworm-slim AS runner
 
-RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+#RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
