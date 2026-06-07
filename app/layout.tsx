@@ -10,16 +10,21 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'TradeOnix — Professional Trading Signals',
+    default: 'TradeOnix — Trade Smarter, Not Harder',
     template: '%s | TradeOnix',
   },
   description:
-    'AI-powered trading signals, real-time market analysis, and professional trading tools for EUR/USD, GBP/USD, BTC/USD, and more.',
-  keywords: ['trading', 'signals', 'forex', 'crypto', 'technical analysis', 'RSI', 'MACD'],
+    'Real-time trading signals for Forex, Crypto & Commodities — backed by AI analysis, professional charts, and a built-in advisor that actually speaks human. Start free, no card required.',
+  keywords: ['trading', 'signals', 'forex', 'crypto', 'technical analysis', 'RSI', 'MACD', 'AI trading', 'backtesting'],
   authors: [{ name: 'TradeOnix' }],
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
   openGraph: {
-    title: 'TradeOnix — Professional Trading Signals',
-    description: 'AI-powered trading signals and market analysis',
+    title: 'TradeOnix — Trade Smarter, Not Harder',
+    description: 'Real-time AI-powered trading signals for Forex, Crypto & Commodities. Start free.',
     type: 'website',
   },
 }
